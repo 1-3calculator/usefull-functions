@@ -245,3 +245,98 @@ function createUUID() {
     var uuid = s.join("");
     return uuid;
 }
+
+/* 
+parameters:
+array of image sources
+
+properties
+name of images
+array of image objects
+
+functions
+push
+remove
+get
+size
+
+*/
+function AnimationImgs(name,arrayOfImageSrc){
+	this.name = name;
+	this.imgs = new Array;
+	
+	if(arrayOfImageSrc != undefined){
+		for(var i = 0; i < arrayOfImageSrc.length; i++){
+			this.imgs.push(new Image);
+			this.imgs[i].src = arrayOfImageSrc[i];
+			this.imgs[i].width = 50;
+			this.imgs[i].height = 50;
+		}
+	}
+	else
+		console.log("please insert images using the PUSH function");
+	
+	this.push = function(imgSrc){
+		var temp = new Image;
+		temp.src = imgSrc;
+		this.imgs.push(temp);
+	}
+	this.remove = function(i){this.imgs.splice(i,1);}
+	this.get = function(i){return this.imgs[i];}
+	this.getName = function(i){return this.name}
+	this.size = function(){return this.imgs.length;}
+}
+
+
+
+/* 
+parameters:
+array of AnimationImgs
+
+properties
+array of AnimationImgs
+
+functions
+list AnimationImgs by name
+push
+remove
+get
+size
+run - returns the cycle of images inoe at a time
+
+*/
+function ObjectAnimation(AnimationImgsArray){
+	if(AnimationImgsArray != undefined){
+		this.aia = AnimationImgsArray;
+	}
+	else{
+		this.aia = new Array;
+	}
+	this.count = 0;
+	
+	this.list = function(){
+		var names = "AnimationImgs objects: "
+		for(var i = 0; i < this.aia.length; i++){
+			names += this.aia[i].getName() + " , ";
+		}
+		return names;
+	}
+	
+	this.push = function(AnimationImgs){this.aia.push(AnimationImgs);}
+	this.remove = function(i){this.aia.splice(i,1);}
+	this.get = function(i){return this.aia[i];}
+	this.size = function(){return this.aia.length;}
+	this.reset = function(i){this.count = 0; return this.get(i).get(this.count);}
+	
+	this.runInt = function(i){
+		if(this.count < this.get(i).size()){
+			var imgReturn = this.get(i).get(this.count);
+			this.count++;	
+			return imgReturn;
+		}
+		else{
+			var temp = this.reset(i);
+			return temp;
+		}
+	}
+}
