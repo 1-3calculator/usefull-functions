@@ -72,6 +72,49 @@ actually do want .myObject h2 to look like the normal <h2>.
 
 	
 	/* ---------------------------------------------- mobile */
+	
+	/* HEADER */
+	header{
+
+	}
+
+	/* NAV */
+	nav{
+
+	}
+
+	/* ARTICLE */
+	article{
+
+	}
+
+	/* SECTION */
+	section{
+
+	}
+
+	/* ASIDE */
+	aside{
+
+	}
+
+	/* FOOTER */
+	footer {
+
+	}
+
+	/* TABLE */
+	table{
+
+	}
+
+	tr{
+
+	}
+
+	td{
+
+	}
 					
 		/* ---------------------------------------------- structures */
 
